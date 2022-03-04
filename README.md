@@ -4,9 +4,11 @@ It is a repository of AAAI2022 paper, “*[Improving evidential deep learning vi
 
 This repository contains the code to reproduce the Multi-task evidential neural network (MT-ENet), which uses the Lipschitz MSE loss function as the additional loss function of the [evidential regression network](https://proceedings.neurips.cc/paper/2020/hash/aab085461de182608ee9f607f3f7d18f-Abstract.html) (ENet). The Lipschitz MSE loss function can improve the accuracy of the ENet while preserving its uncertainty estimation capability, by avoiding gradient conflict with the NLL loss function—the original loss function of the ENet.
 
-## **Setup**
+<p align="center">
+<img src="https://github.com/deargen/MT-ENet/blob/main/pic/synthetic_experiment.png" alt="drawing" width="800"/>
+</p>
 
----
+## **Setup**
 
 Please refer to "requirements.txt" for requring packages of this repo.
 
@@ -14,9 +16,8 @@ Please refer to "requirements.txt" for requring packages of this repo.
 pip install -r requirements.txt
 ```
 
-## Training the ENet with the Lipschitz-MSE loss: example
 
----
+## Training the ENet with the Lipschitz-MSE loss: example
 
 ```python
 from mtevi.mtevi import EvidentialMarginalLikelihood, EvidenceRegularizer, modified_mse
@@ -35,8 +36,6 @@ for inputs, labels in dataloader:
 ```
 
 ## **Quick start**
-
----
 
 - **Synthetic data experiment.**
 
@@ -58,3 +57,18 @@ python train_evinet.py -o test --type davis -f 0  # MT-ENet
 ```
 
 - **Gradient conflict experiment on the DTA benchmarks**
+
+```bash
+python check_conflict.py --type davis -f 0 # Conflict between the Lipschitz MSE (proposed) and NLL loss. 
+python check_conflict.py --type davis -f 0 --abl # Conflict between the simple MSE loss and NLL loss.
+```
+
+## Characteristic of the Lipschitz MSE loss
+
+<p align="center">
+<img src="https://github.com/deargen/MT-ENet/blob/main/pic/lipschitzMSE.png" alt="drawing" width="800"/>
+</p>
+
+- The Lipschitz MSE loss function can support training the ENet to more accurately predicts target values.
+- It regularizes its gradient to prevent gradient conflict with the NLL loss--the original loss function--if the NLL loss increases predictive uncertainty of the ENet. 
+- Please check our [paper](https://arxiv.org/abs/2112.09368) for details.
