@@ -5,7 +5,7 @@ It is a repository of AAAI2022 paper, “*[Improving evidential deep learning vi
 This repository contains the code to reproduce the Multi-task evidential neural network (MT-ENet), which uses the Lipschitz MSE loss function as the additional loss function of the [evidential regression network](https://proceedings.neurips.cc/paper/2020/hash/aab085461de182608ee9f607f3f7d18f-Abstract.html) (ENet). The Lipschitz MSE loss function can improve the accuracy of the ENet while preserving its uncertainty estimation capability, by avoiding gradient conflict with the NLL loss function—the original loss function of the ENet.
 
 <p align="center">
-<img src="https://github.com/deargen/MT-ENet/blob/main/pic/synthetic_experiment.png" alt="drawing" width="800"/>
+<img src="https://github.com/deargen/MT-ENet/blob/main/pic/synthetic_experiment.png" alt="drawing" width="700"/>
 </p>
 
 ## **Setup**
@@ -66,7 +66,7 @@ python check_conflict.py --type davis -f 0 --abl # Conflict between the simple M
 ## Characteristic of the Lipschitz MSE loss
 
 <p align="center">
-<img src="https://github.com/deargen/MT-ENet/blob/main/pic/lipschitzMSE.png" alt="drawing" width="800"/>
+<img src="https://github.com/deargen/MT-ENet/blob/main/pic/lipschitzMSE.png" alt="drawing" width="700"/>
 </p>
 
 - The Lipschitz MSE loss function can support training the ENet to more accurately predicts target values.
